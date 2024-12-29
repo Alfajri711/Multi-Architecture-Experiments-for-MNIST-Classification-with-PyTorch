@@ -1,50 +1,82 @@
-# Eksperimen Multi-Arsitektur untuk Klasifikasi MNIST dengan PyTorch
+# 🎉 **Eksperimen Multi-Arsitektur untuk Klasifikasi MNIST dengan PyTorch** 🎉
 
-Selamat datang di repository **Eksperimen Multi-Arsitektur untuk Klasifikasi MNIST dengan PyTorch**! Proyek ini bertujuan untuk mengeksplorasi performa klasifikasi dataset MNIST menggunakan berbagai arsitektur jaringan saraf. Dengan PyTorch sebagai framework utama, proyek ini memfasilitasi eksperimen komprehensif untuk memahami bagaimana kedalaman model, fungsi aktivasi, dan fungsi loss memengaruhi hasil klasifikasi.
+Selamat datang di proyek **Eksperimen Multi-Arsitektur untuk Klasifikasi MNIST**! Di sini, kami akan mengeksplorasi dan membandingkan kinerja berbagai arsitektur jaringan saraf dalam mengklasifikasikan dataset MNIST menggunakan **PyTorch**. Kami menguji berbagai kombinasi **fungsi aktivasi** dan **fungsi loss** untuk melihat bagaimana kedalaman model, tipe aktivasi, dan fungsi loss memengaruhi hasil klasifikasi.
 
----
+## 📚 **Deskripsi Proyek**
 
-## 🌟 **Tentang Proyek**  
-Dataset **MNIST** merupakan kumpulan gambar angka tangan tertulis (0-9) yang sering digunakan sebagai benchmark dalam machine learning. Dalam proyek ini, kami mengimplementasikan tiga arsitektur jaringan saraf yang berbeda untuk membandingkan performa mereka dalam mengklasifikasi dataset MNIST.  
+### **🧠 Model Jaringan Saraf:**
+Kami menguji tiga model dengan jumlah lapisan tersembunyi yang berbeda untuk melihat bagaimana kedalaman model mempengaruhi performa:
+- **ShallowModel**: 1 lapisan tersembunyi dengan 64 unit.
+- **MediumModel**: 2 lapisan tersembunyi dengan 128 dan 64 unit.
+- **DeepModel**: 3 lapisan tersembunyi dengan 256, 128, dan 64 unit.
 
----
+### **💡 Fungsi Aktivasi:**
+Kami mengeksplorasi tiga fungsi aktivasi yang umum digunakan:
+- **ReLU**: Membantu mempercepat pelatihan dan meningkatkan konvergensi.
+- **Sigmoid**: Fungsi aktivasi untuk klasifikasi dengan output probabilitas.
+- **Tanh**: Memungkinkan model untuk mempelajari representasi lebih kaya dengan output dalam rentang (-1, 1).
 
-## ⚙️ **Fitur Utama**  
+### **⚖️ Fungsi Loss:**
+Fungsi loss mengukur seberapa baik model kita dalam mengklasifikasikan data:
+- **Cross-Entropy Loss**: Digunakan untuk klasifikasi probabilistik.
+- **Sparse Cross-Entropy Loss**: Untuk data dengan label integer.
+- **Hinge Loss**: Sering dipakai pada model SVM untuk margin antar kelas.
 
-1. **🧠 Tiga Arsitektur Model Jaringan Saraf**:
-   - **ShallowModel**: Model sederhana dengan 1 lapisan tersembunyi berisi 64 unit.
-   - **MediumModel**: Model menengah dengan 2 lapisan tersembunyi masing-masing 128 dan 64 unit.
-   - **DeepModel**: Model kompleks dengan 3 lapisan tersembunyi masing-masing 256, 128, dan 64 unit.
+### **📊 Evaluasi Model:**
+Kami mengevaluasi performa model dengan berbagai metrik untuk mendapatkan gambaran menyeluruh tentang kemampuannya:
+- **Akurasi**: Persentase prediksi yang benar.
+- **Presisi, Recall, dan F1-Score**: Untuk memahami keseimbangan hasil positif dan negatif.
+- **Confusion Matrix**: Memberikan gambaran visual tentang kesalahan klasifikasi model.
 
-2. **⚡ Fungsi Aktivasi**:
-   - Mendukung eksperimen dengan tiga fungsi aktivasi: **ReLU**, **Sigmoid**, dan **Tanh**.
+## 🏆 **Hasil Eksperimen** 🏆
 
-3. **📉 Eksperimen Fungsi Loss**:
-   - **Cross Entropy Loss**
-   - **Sparse Cross Entropy Loss**
-   - **Hinge Loss**  
-   Eksperimen ini membantu memahami bagaimana fungsi loss memengaruhi pembelajaran model.
+### **💡 ReLU Activation - Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.11%
+- **Medium Model**: Akurasi = 98.28%
+- **Deep Model**: Akurasi = 98.43%
 
-4. **📊 Evaluasi Komprehensif**:
-   Model yang sudah dilatih dievaluasi menggunakan:
-   - **Akurasi**
-   - **Presisi**
-   - **Recall**
-   - **F1-Score**
-   - **Confusion Matrix**  
-   Evaluasi ini memberikan wawasan lengkap mengenai performa model.
+### **💡 ReLU Activation - Sparse Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.32%
+- **Medium Model**: Akurasi = 98.15%
+- **Deep Model**: Akurasi = 98.43%
 
-5. **🚀 Pelatihan Fleksibel**:
-   - Optimizer **Adam** dengan learning rate 0,001.
-   - Pelatihan dilakukan selama 10 epoch untuk setiap konfigurasi.
+### **💡 ReLU Activation - Hinge Loss:**
+- **Shallow Model**: Akurasi = 96.83%
+- **Medium Model**: Akurasi = 97.72%
+- **Deep Model**: Akurasi = 98.02%
 
----
+### **💡 Sigmoid Activation - Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.30%
+- **Medium Model**: Akurasi = 98.30%
+- **Deep Model**: Akurasi = 98.29%
 
-## 🔍 **Hasil Evaluasi**  
+### **💡 Sigmoid Activation - Sparse Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.25%
+- **Medium Model**: Akurasi = 98.48%
+- **Deep Model**: Akurasi = 98.31%
 
-### Performa Model Berdasarkan Arsitektur  
-| Model           | Fungsi Aktivasi | Fungsi Loss         | Akurasi | Presisi | Recall | F1-Score |
-|------------------|----------------|---------------------|---------|---------|--------|----------|
-| ShallowModel     | ReLU           | CrossEntropyLoss    | 96.2%   | 96.1%   | 95.8%  | 95.9%    |
-| MediumModel      | Tanh           | SparseCrossEntropy  | 97.4%   | 97.3%   | 97.1%  | 97.2%    |
-| DeepModel        | Sigmoid        | HingeLoss           | 98.5%   | 98.4%   | 98.3%  | 98.3%    |
+### **💡 Sigmoid Activation - Hinge Loss:**
+- **Shallow Model**: Akurasi = 97.07%
+- **Medium Model**: Akurasi = 98.05%
+- **Deep Model**: Akurasi = 97.90%
+
+### **💡 Tanh Activation - Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.26%
+- **Medium Model**: Akurasi = 97.60%
+- **Deep Model**: Akurasi = 97.39%
+
+### **💡 Tanh Activation - Sparse Cross-Entropy Loss:**
+- **Shallow Model**: Akurasi = 97.41%
+- **Medium Model**: Akurasi = 97.55%
+- **Deep Model**: Akurasi = 97.30%
+
+### **💡 Tanh Activation - Hinge Loss:**
+- **Shallow Model**: Akurasi = 96.66%
+- **Medium Model**: Akurasi = 96.59%
+- **Deep Model**: Akurasi = 96.68%
+
+## 🏅 **Hasil Terbaik:**
+**Deep Model dengan ReLU Activation dan Sparse Cross-Entropy Loss** mencapai **Akurasi 98.48%**, yang merupakan hasil terbaik dalam eksperimen ini! 🚀
+
+## 🚀 **Kesimpulan:**
+Eksperimen ini menunjukkan bagaimana kombinasi berbagai arsitektur, fungsi aktivasi, dan fungsi loss dapat memengaruhi kinerja model dalam klasifikasi dataset MNIST. Dengan **Deep Model** dan **ReLU Activation** serta **Sparse Cross-Entropy Loss**, model menunjukkan performa terbaik, mencapai akurasi **98.48%**!
